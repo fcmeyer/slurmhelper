@@ -39,7 +39,7 @@ def built_in_spec_type(x):
         raise AssertionError("a string should be provided...")
     # Validation
     l = x.split(":")
-    if not (len(l) == 1 or len(l) == 2):
+    if not len(l) in (1, 2):
         raise AssertionError(
             f"Something weird is happening when parsing your built-in spec argument. "
             f"Make sure you do not have more than one colon "
