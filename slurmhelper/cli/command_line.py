@@ -13,6 +13,7 @@ from ..jobs.cli_helpers import prep_job, prep_job_array, generate_run_scripts
 from ..utils.io import (
     calculate_directories,
     calculate_directories_midwayscratch,
+    calculate_directories_amarel,
     copy_or_clean,
     initialize_directories,
     is_valid_db,
@@ -48,12 +49,13 @@ class SlurmhelperCLI:
         if (
             "cluster" in args
             and "userid" in args
-            and args.cluster == "midway2-scratch"
+            and args.cluster in {"midway2-scratch", "amarel"}
             and args.userid is None
         ):
             raise ArgumentError(
-                "If you are using midway2-scratch, you must provide your user ID!"
+                "If you are using midway2-scratch or Amarel, you must provide your user ID!"
             )
+
         if args.operation == "check":
             print(
                 f"\nSlurmhelper will run the {args.operation} {args.check_operation} operation."
@@ -143,6 +145,10 @@ class SlurmhelperCLI:
         if self.args.cluster is not None:
             if self.args.cluster[0] == "midway2-scratch":
                 self.paths = calculate_directories_midwayscratch(
+                    self.args.userid[0], base_dir_name
+                )
+            elif self.args.cluster[0] == "amarel":
+                self.paths = calculate_directories_amarel(
                     self.args.userid[0], base_dir_name
                 )
         else:

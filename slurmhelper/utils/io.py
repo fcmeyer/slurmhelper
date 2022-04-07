@@ -69,6 +69,16 @@ def calculate_directories_midwayscratch(userid, base_dir_name):
     basepath = os.path.join("/", "home", userid, "scratch-midway2")
     return calculate_directories(basepath, base_dir_name)
 
+def calculate_directories_amarel(userid, base_dir_name):
+    """
+    Wrapper for calculate directories function: points to user scratch
+    partition in the Rutgers University Amarel cluster.
+    :param userid: RUNetID of user
+    :param base_dir_name: name of the working directory to be created
+    :return: dict with path structure
+    """
+    basepath = os.path.join("/", "scratch", userid)
+    return calculate_directories(basepath, base_dir_name)
 
 def initialize_directories(dirs):
     """

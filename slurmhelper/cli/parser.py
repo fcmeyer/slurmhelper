@@ -206,10 +206,11 @@ def add_work_dir_path_args(parser):
         "--cluster",
         type=str,
         nargs=1,
-        choices=["midway2-scratch"],
+        choices=["midway2-scratch", "amarel"],
         action="store",
         help="Use defaults for a given HPC cluster to use. Currently, only "
-        "UChicago Midway2 (run on user scratch) is implemented.",
+        "UChicago Midway2 (run on user scratch) is implemented. Rutgers "
+        "Amarel is currently under development",
     )
 
     parser.add_argument(
@@ -217,7 +218,7 @@ def add_work_dir_path_args(parser):
         type=str,
         nargs=1,
         action="store",
-        help="User ID (e.g., CNetID at UChicago) of the person using this. "
+        help="User ID (e.g., CNetID at UChicago, RUID/NetID for Rutgers) of the person using this. "
         "Required for some clusters (e.g., in midway2-scratch, to calculate the path "
         "to scratch where the pre-fabricated bash "
         "scripts are being stored. Ignored otherwise.",
